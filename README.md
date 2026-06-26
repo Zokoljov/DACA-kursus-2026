@@ -12,3 +12,4 @@ UrbanStyle.ltd DACA 2026 kursus - isiklik töövihik
 | 5-6 | Visualiseerimine |  |
 | 7-8 | Python |  |
 | 9-10 | Portfoolio + Karjäär |  |
+
