@@ -1,4 +1,4 @@
-#Vormindamine
+##Vormindamine
 
 |##Süntaks	|##Tulemus|
 |-----------|---------|
