@@ -1,0 +1,104 @@
+Osa 3: DISTINCT ja COUNT — Unikaalsed Väärtused ja Loendamine
+
+Samm 1: DISTINCT — ainult unikaalsed väärtused
+DISTINCT eemaldab korduvad read tulemusest:
+
+-- Kõik kanalid (korduvad)
+SELECT store_location
+FROM sales;
+-- Tulemus: tuhandeid ridu, paljud korduvad
+
+-- Ainult unikaalsed kanalid
+SELECT DISTINCT store_location
+FROM sales;
+-- Tulemus: 3-5 rida (nt Tallinn, Tartu, Pärnu, E-pood)
+
+
+DISTINCT töötab ka mitme veeruga — siis otsib unikaalseid KOMBINATSIOONE:
+
+-- Unikaalsed kanali ja staatuse kombinatsioonid
+SELECT DISTINCT store_location, payment_method
+FROM sales;
+
+Samm 2: COUNT — ridade loendamine
+
+Funktsioon	Mida loeb	NULL-id
+COUNT(*)	Kõik read	Loeb ka NULL-iga ridu
+COUNT(veerg)	Selle veeru mitte-NULL väärtused	Jätab NULL-id välja
+COUNT(DISTINCT veerg)	Ainult unikaalsed mitte-NULL väärtused	Jätab NULL-id ja kordused välja
+
+
+-- Mitu rida on tabelis kokku?
+SELECT COUNT(*) AS ridade_arv
+FROM sales;
+---15234---
+
+
+-- Mitu rida omab customer_id väärtust (mitte NULL)?
+SELECT COUNT(customer_id) AS klientidega_tellimused
+FROM sales;
+
+-- Mitu ERINEVAT klienti on tellimusi teinud?
+SELECT COUNT(DISTINCT customer_id) AS unikaalseid_kliente
+FROM sales;
+
+
+Samm 3: NULL-ide loendamine
+
+-- Mitu customer_id on NULL?
+SELECT
+    COUNT(*) AS kokku,
+    COUNT(customer_id) AS klientidega,
+    COUNT(*) - COUNT(customer_id) AS puuduvaid
+FROM sales;
+
+--> kokku 15234, klientidega 13747, puuduvaid 1487
+---See töötab, sest COUNT() loeb kõiki ridu, aga COUNT(customer_id) jätab NULL-id välja. 
+Vahe = puuduvate väärtuste arv.---
+
+
+Samm 4: Duplikaatide tuvastamine
+
+-- Samm A: Mitu rida kokku?
+SELECT COUNT(*) FROM sales;
+
+-- Samm B: Mitu unikaalset sale_id on?
+SELECT COUNT(DISTINCT sale_id) FROM sales;
+
+-- Kui A > B, siis on duplikaadid!
+
+Select
+    Count(*) AS kokku,
+    Count(DISTINCT sale_id) AS unikaalsed, 
+    Count(*) - Count(DISTINCT sale_id) AS duplikaadid
+From sales;
+
+--> kokku 15234, unikaalsed 10118, duplikaadid 5116
+
+
+3.3 Concrete Practice: DISTINCT ja COUNT harjutused (30 min)
+
+SELECT
+    COUNT(*) AS ridade_arv,
+    COUNT(customer_id) AS klientidega,
+    COUNT(*) - COUNT(customer_id) AS puudub_klient,
+    COUNT(DISTINCT customer_id) AS unikaalseid_kliente
+FROM sales;
+
+
+Kirjuta tulemused siia:
+●	Ridu kokku: 15234
+●	Klientidega tellimusi: 13747
+●	Puuduvaid kliente: 1487
+●	Unikaalseid kliente: 2558
+
+Päring 2 — Unikaalsed kanalid:  
+select distinct store_location
+from sales
+order by store_location asc;
+
+millised on unikaalsed kanalid?
+-- Tallinn, Tartu, Pärnu, E-pood (null)
+
+
+
