@@ -19,7 +19,7 @@ UrbanStyle.ltd DACA 2026 kursus - isiklik töövihik
 ## Nädala kaupa
 | Nädal | Teema | Staatus |
 |-------|-------|---------|
-| 0 | Onboarding | |
+| 0 | Onboarding | DONE!|
 | 1 | SQL Basics |  |
 | 2 | SQL Cleaning | |
 | 3 | SQL JOINs |  |
