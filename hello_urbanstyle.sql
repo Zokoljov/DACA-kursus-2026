@@ -17,3 +17,6 @@ VALUES ('[Sinu Nimi]', 'Andmeanaluutik', 0);
 
 -- Vaata tulemust
 SELECT * FROM team_members ORDER BY joined_at;
+
+---- kusttuta read:
+DELETE FROM team_members WHERE id BETWEEN 8 AND 11;
