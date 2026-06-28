@@ -181,3 +181,13 @@ Toomase jaoks: "1487 tellimusel puudub kliendi ID."
 Toomase jaoks: "Suurim müük oli 2170,4 eurot."
 Toomase jaoks: "Leidsime 305 tellimust, kus summa on 0 või negatiivne."
 
+Quizz:
+1) C +
+2) A +
+3) D +
+4) C +
+5) A - õige B
+6) D +
+7) A +
+8) C +
+9) B +
